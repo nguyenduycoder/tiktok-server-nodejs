@@ -12,6 +12,12 @@ exports.uploadData = function (req, res) {
         res.send({ result: data })
     })
 }
+exports.updateData = function (req, res) {
+    var data = req.body
+    uploadData.update(data, function (data) {
+        res.send({ result: data })
+    })
+}
 exports.deleteData = function (req, res) {
     var id = req.params.id
     uploadData.delete(id, function (data) {

@@ -8,6 +8,7 @@ const Upload = function (upload) {
     this.comments = upload.comments
     this.shares = upload.shares
     this.htag = upload.htag
+    this.imagecover = upload.imagecover
     this.src = upload.src
 
 
@@ -30,18 +31,18 @@ Upload.upload = async function (data, result) {
     })
 }
 Upload.update = function (data, result) {
-    // db.query(
-    //     'UPDATE Users SET first_name=?,last_name=?,full_name=?,nickname=?,avatar=?,bio=?,tick=?,followings_count=?,followers_count=?,likes_count=?,website_url=?,facebook_url=?,youtube_url=?,twitter_url=?,instagram_url=?,created_at=?,updated_at=?  WHERE id = ?'
-    //     ,
-    //     [data.first_name, data.last_name, data.full_name, data.nickname, data.avatar, data.bio, data.tick, data.followings_count, data.followers_count, data.likes_count, data.website_url, data.facebook_url, data.youtube_url, data.twitter_url, data.instagram_url, data.created_at, data.updated_at, data.id]
-    //     , function (err, user) {
-    //         if (err) {
-    //             console.log(err)
-    //         }
-    //         else {
-    //             result(`Đã update dữ liệu của user ${data.id} thành công`)
-    //         }
-    //     })
+    db.query(
+        'UPDATE Uploadvideo SET iduser=?,title=?,likes=?,shares=?,comments=?,htag=?,imagecover=? WHERE id = ?'
+        ,
+        [data.iduser, data.title, data.likes, data.shares, data.comments, data.htag, data.imagecover, data.id]
+        , function (err, user) {
+            if (err) {
+                console.log(err)
+            }
+            else {
+                result(`Đã update dữ liệu của upload ${data.id} thành công`)
+            }
+        })
 }
 Upload.delete = async function (id, result) {
     db.query(
