@@ -10,6 +10,11 @@ const Upload = function (upload) {
     this.htag = upload.htag
     this.imagecover = upload.imagecover
     this.src = upload.src
+    this.modeview = upload.modeview
+    this.optcomment = upload.optcomment
+    this.optduet = upload.optduet
+    this.otpstitch = upload.otpstitch
+
 
 
 }
@@ -22,6 +27,14 @@ Upload.get_all_data = function (params, result) {
         else result(upload)
     })
 }
+Upload.getbyId = function (id, result) {
+    db.query('SELECT * FROM Uploadvideo WHERE iduser=?', id, function (err, upload) {
+        if (err) {
+            console.log(err)
+        }
+        else result(upload[0])
+    })
+}
 Upload.upload = async function (data, result) {
     db.query('INSERT INTO Uploadvideo SET ?', data, function (err, upload) {
         if (err) {
@@ -32,9 +45,9 @@ Upload.upload = async function (data, result) {
 }
 Upload.update = function (data, result) {
     db.query(
-        'UPDATE Uploadvideo SET iduser=?,title=?,likes=?,shares=?,comments=?,htag=?,imagecover=? WHERE id = ?'
+        'UPDATE Uploadvideo SET iduser=?,title=?,likes=?,shares=?,comments=?,htag=?,imagecover=?,modeview=?,optcomment=?,optduet=?,otpstitch=? WHERE id = ?'
         ,
-        [data.iduser, data.title, data.likes, data.shares, data.comments, data.htag, data.imagecover, data.id]
+        [data.iduser, data.title, data.likes, data.shares, data.comments, data.htag, data.imagecover, data.modeview, data.optcomment, data.optduet, data.otpstitch, data.id]
         , function (err, user) {
             if (err) {
                 console.log(err)

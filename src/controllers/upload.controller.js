@@ -6,6 +6,11 @@ exports.getData = function (req, res) {
     }
     )
 }
+exports.uploaddetails = function (req, res) {
+    uploadData.getbyId(req.params.id, function (data) {
+        res.send({ result: data })
+    })
+}
 exports.uploadData = function (req, res) {
     var data = req.body
     uploadData.upload(data, function (data) {
