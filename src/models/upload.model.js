@@ -14,6 +14,7 @@ const Upload = function (upload) {
     this.optcomment = upload.optcomment
     this.optduet = upload.optduet
     this.otpstitch = upload.otpstitch
+    this.view = upload.view
 
 
 
@@ -32,7 +33,7 @@ Upload.getbyId = function (id, result) {
         if (err) {
             console.log(err)
         }
-        else result(upload[0])
+        else result(upload)
     })
 }
 Upload.upload = async function (data, result) {
@@ -45,9 +46,9 @@ Upload.upload = async function (data, result) {
 }
 Upload.update = function (data, result) {
     db.query(
-        'UPDATE Uploadvideo SET iduser=?,title=?,likes=?,shares=?,comments=?,htag=?,imagecover=?,modeview=?,optcomment=?,optduet=?,otpstitch=? WHERE id = ?'
+        'UPDATE Uploadvideo SET iduser=?,title=?,likes=?,shares=?,comments=?,htag=?,imagecover=?,modeview=?,optcomment=?,optduet=?,otpstitch=?,view=? WHERE id = ?'
         ,
-        [data.iduser, data.title, data.likes, data.shares, data.comments, data.htag, data.imagecover, data.modeview, data.optcomment, data.optduet, data.otpstitch, data.id]
+        [data.iduser, data.title, data.likes, data.shares, data.comments, data.htag, data.imagecover, data.modeview, data.optcomment, data.optduet, data.otpstitch, data.view, data.id]
         , function (err, user) {
             if (err) {
                 console.log(err)
